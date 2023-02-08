@@ -15,11 +15,11 @@ export default function OtherTeams() {
 
     useEffect(()=>{
       let isCurrent = true
-      axios.get(`http://localhost:9000/team/${teamName}`)
+      const slot = localStorage.getItem("slot")
+      axios.get(`http://localhost:9000/team/${teamName}?slot=${slot}`)
       .then(({data})=>{
         if(isCurrent){
           setBudget(data.teamDetails.budget)
-          //setPowercards(data.teamDetails.powercards)
           setPlayers(data.teamDetails.players)
           setTeamLogo(data.teamDetails.teamImg)
         }

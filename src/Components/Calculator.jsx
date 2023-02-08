@@ -79,7 +79,8 @@ export default function Calculator() {
   }
   const submit = ()=>{
     const name = localStorage.getItem("name")
-    axios.put(`http://localhost:9000/score/${name}`,{score:score},{headers:{"Content-Type":"application/json"}})
+    const slot = localStorage.getItem("slot")
+    axios.put(`http://localhost:9000/score/${name}?slot=${slot}`,{score:score},{headers:{"Content-Type":"application/json"}})
     .then(({data})=>{
       alert(data.message)
       navigate("/dashboard")
@@ -99,7 +100,8 @@ export default function Calculator() {
   
   useEffect(()=>{
     const name = localStorage.getItem("name")
-    axios.get(`http://localhost:9000/team/${name}`)
+    const slot = localStorage.getItem("slot")
+    axios.get(`http://localhost:9000/team/${name}?slot=${slot}`)
     .then(({data})=>{
       setTeamPlayers(data.teamDetails.players)
     })

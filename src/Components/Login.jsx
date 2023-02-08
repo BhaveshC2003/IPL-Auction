@@ -7,19 +7,21 @@ import { useNavigate } from "react-router-dom";
 export default function Login() {
   const [loginID, setloginID] = useState()
   const [password, setPassword] = useState()
+  const [slot,setSlot] = useState()
   const navigate = useNavigate()
   
   const submit = async() =>{
-    //window.location.href = "/dashboard"
     const userDetails = {
       name:loginID,
-      password:password
+      password:password,
+      slot:slot
     }
     const {data} = await axios.post("http://localhost:9000/login",userDetails,{headers:{"Content-Type":"application/json"}})
     if(data.user){
       alert(data.message)
       localStorage.clear()
       localStorage.setItem("name",data.user.name)
+      localStorage.setItem("slot",slot)
       navigate("/dashboard")
     }else{
       alert(data.message)
@@ -44,6 +46,7 @@ export default function Login() {
       
         <input type="text" value={loginID} onChange={(e)=>{ setloginID(e.target.value) }} className="input" placeholder="Login ID" />
         <input type="password" value={password} onChange={(e)=>{ setPassword(e.target.value) }}  className="input" placeholder="Password" />
+        <input type="text" value={slot} onChange={(e)=>setSlot(Number(e.target.value))} className="input" placeholder="Slot Number"/>
           <button onClick={submit}>Submit</button>
         
       </div>

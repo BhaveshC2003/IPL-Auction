@@ -5,6 +5,10 @@ const teamSchema = new mongoose.Schema({
         type:String,
         required:[true,"Team name required"]
     },
+    slot:{
+        type:Number,
+        required:[true,"Slot required"]
+    },
     powercards:[
         {
             name:{

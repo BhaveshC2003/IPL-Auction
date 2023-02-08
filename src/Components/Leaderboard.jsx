@@ -20,7 +20,8 @@ export default function Leaderboard() {
   ]
   const [Team,setTeam] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:9000/team/all")
+    const slot = localStorage.getItem("slot")
+    axios.get(`http://localhost:9000/team/all?slot=${slot}`)
     .then(({data})=>{
         data.teams.sort((a,b)=>b.score-a.score)
         setTeam(data.teams)      

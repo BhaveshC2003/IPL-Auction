@@ -28,8 +28,8 @@ app.listen(PORT,()=>{
 
 //Logging in user
 app.post("/login",(req,res)=>{
-    const {name,password} =req.body;
-    teamUser.findOne({name:name},(err,user)=>{
+    const {name,password,slot} =req.body;
+    teamUser.findOne({name,slot},(err,user)=>{
         if(user){
             if(password===user.password){
                 res.send({message:"login successfully",user:user})
@@ -45,7 +45,8 @@ app.post("/login",(req,res)=>{
 //Fetching data of all teams
 app.get("/team/all",async(req,res,next)=>{
     try{
-        const teams = await Team.find().select("name score")
+        const {slot} = req.query
+        const teams = await Team.find({slot}).select("name score")
         res.status(200).json({
             success:true,
             teams
@@ -60,7 +61,8 @@ app.get("/team/all",async(req,res,next)=>{
 app.get("/team/:name",async(req,res,next)=>{
     try{
         const {name} = req.params
-        const teamDetails = await Team.findOne({name:name}).populate("players")
+        const {slot} = req.query
+        const teamDetails = await Team.findOne({name,slot}).populate("players")
         res.status(200).json({
             success:true,
             teamDetails
@@ -74,7 +76,8 @@ app.get("/team/:name",async(req,res,next)=>{
 app.put("/score/:name",async(req,res,next)=>{
     try{
         const {name} = req.params
-        await Team.findOneAndUpdate({name:name},{score:req.body.score})
+        const {slot} = req.query
+        await Team.findOneAndUpdate({name,slot},{score:req.body.score})
         res.status(200).json({
             success:true,
             message:"Score Updated Successfully"

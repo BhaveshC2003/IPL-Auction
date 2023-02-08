@@ -12,7 +12,8 @@ export default function Dashboard() {
   const [players, setPlayers] = useState([])
   useEffect(()=>{
     const name = localStorage.getItem("name")
-    axios.get(`http://localhost:9000/team/${name}`)
+    const slot = localStorage.getItem("slot")
+    axios.get(`http://localhost:9000/team/${name}?slot=${slot}`)
     .then(({data})=>{
       setTeamLogo(data.teamDetails.teamImg)
       setBudget(data.teamDetails.budget)
