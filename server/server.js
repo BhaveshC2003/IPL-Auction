@@ -139,6 +139,72 @@ app.put("/team/:name",async(req,res,next)=>{
         next(new ErrorHandler())
     }
 })
+//Adding powercards
+app.put("/team/powercards/:name",async(req,res,next)=>{
+    try{
+        const {name} = req.params
+        const {powercard,slot,amount} = req.body
+        const team = await Team.findOne({name,slot})
+        if(!team)
+            return next(new ErrorHandler(404,"Team not found"))
+        const newAmount = team.budget - amount
+        if(newAmount < 0)
+            return next(404,`Team ${name} does not have enough budget`)
+        team.budget = newAmount
+        team.powercards.push({name: powercard, isUsed: false})
+        await team.save()
+        res.status(200).json({
+            success:true,
+            message:"Updated Successfully"
+        })
+    }catch(e){
+        next(new ErrorHandler())
+    }
+})
+//Budget deduction
+app.put("/team/budget/:name", async(req,res,next)=>{
+    try{
+        const {name} = req.params
+        const {slot,amount} = req.body
+        const team = await Team.findOne({name,slot})
+        if(!team)
+            return next(new ErrorHandler(404,"Team not found"))
+        const newAmount = team.budget - amount
+        if(newAmount < 0)
+            return next(404,`Team ${name} does not have enough budget`)
+        team.budget = newAmount
+        await team.save()
+        res.status(200).json({
+            success:true,
+            message:"Updated Successfully"
+        })
+    }catch(e){
+        next(new ErrorHandler())
+    }
+})
+//player removal
+app.put("/team/player/:name",async(req,res,next)=>{
+    try{
+        const {name} = req.params
+        const {playerName,slot,amount} = req.body
+        const team = await Team.findOne({name,slot})
+        if(!team)
+            return next(new ErrorHandler(404,"Team not found"))
+        const player = await Players.findOne({playerName}).select("_id")
+        if(!player)
+            return next(404,"Player not found")
+        const newAmount = team.budget + amount
+        team.budget = newAmount
+        team.players.remove(player)
+        await team.save()
+        res.status(200).json({
+            success:true,
+            message:"Updated Successfully"
+        })
+    }catch(e){
+        next(new ErrorHandler())
+    }
+})
 
 
 //Middleware for Error
