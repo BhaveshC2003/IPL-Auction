@@ -12,7 +12,7 @@ export default function Card ({playerName, playerImg, btnRequired, flagImg, base
     
   return (
     <ReactCardFlip containerClassName="card" isFlipped={isFlipped} flipDirection='horizontal' cardStyles={scale}>
-            <CardFront playerName={playerName} playerImg={playerImg} flip={flip} btnRequired={btnRequired} flagImg={flagImg} overall={overall} type={type} basePrice = {basePrice} color_primary = {color_primary} color_secondary = {color_secondary} />
+            <CardFront playerName={playerName} playerImg={playerImg} flip={flip} btnRequired={btnRequired} flagImg={flagImg} overall={overall} type={type} basePrice = {basePrice} color_primary = {color_primary} color_secondary = {color_secondary}  />
             <CardBack flip= {flip}batStat = {batStat} bowlStat={bowlStat} color_primary = {color_primary} color_secondary={color_secondary} btnRequired={btnRequired}  />
     </ReactCardFlip>
     

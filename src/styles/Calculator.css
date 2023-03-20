@@ -155,3 +155,58 @@
     border-radius: 0px 0px 30px 30px;
     cursor: pointer;
 }
+.isbatButton{
+    cursor: pointer;
+    width: 1vw;
+}
+.container-title{
+    color: white;
+}
+@media only screen and (max-width: 1000px){
+    .calculator-container{
+        height: auto;
+        padding: 3vw;
+    }
+    .calculate{
+        width: 100%;
+        justify-content: space-around;
+    }
+    .calculate span{
+        font-size: 4vw;
+    }
+    .points-container{
+        height: 10vw;
+        width: 23vw;
+        font-size: 4vw;
+    }
+    .calculate button{
+        height: 10vw;
+        width: 20vw;
+        font-size: 4vw;
+    }
+    .calculator-type-player-container{
+        height: 42vw;
+    }
+    .calculator-type-player-container p{
+        font-size: 4vw;
+    }
+    .calculator-card-buttons{
+        font-size: 2.6vw;
+
+    }
+    .calculator-card-buttons-container{
+        width: 26vw;
+        height: 6vw;
+    }
+    .calculator-team-players-container div p{
+        font-size: 4vw;
+        padding: 2vw;
+    }
+    .remove-button{
+        font-size: 2.6vw;
+        height: 5vw;
+    }
+    .calculator-individual-team-player-container{
+        gap: 3vw;
+    }
+}

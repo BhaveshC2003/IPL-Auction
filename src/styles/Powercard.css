@@ -40,3 +40,9 @@
 .powercard:hover .powercard-details{
     visibility: visible;
 }
+@media only screen and (max-width:1000px){
+    .powercard{
+        height: 24vw;
+        width: 24vw;
+    }
+}

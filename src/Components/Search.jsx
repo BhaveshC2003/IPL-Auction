@@ -4,6 +4,8 @@ import SearchIcon from '@mui/icons-material/Search';
 import Card from './Card';
 import Navbar from './Navbar';
 import axios from 'axios';
+import html2canvas from 'html2canvas';
+
 
 export default function Search() {
   const [searchQuery, setSearchQuery] = useState(null)
@@ -11,7 +13,7 @@ export default function Search() {
   const [players,setPlayers] = useState()
   const submit = async(e) =>{
       e.preventDefault()
-      let url = "http://localhost:9000/players?"
+      let url = "https://oculus-ipl-action.onrender.com/players?"
       if(searchQuery && !typeOfPlayer)
         url = url + `playerName=${searchQuery}`
       else if(!searchQuery && typeOfPlayer)
@@ -32,6 +34,7 @@ export default function Search() {
         <form onSubmit={submit}>
           <div>          <label htmlFor="query"><SearchIcon/></label>
           <input type="text" name='query' value={searchQuery} placeholder="Search" onChange={ (e)=>{setSearchQuery(e.target.value)}} autoComplete="off"/></div>
+          
           <select className='menu-item' name="type" onChange={(e)=>setTypeOfPlayer((e.target.value).toLowerCase())}>
             <option className='menu-item' value="Batsman">Batsman</option>
             <option className='menu-item' value="Bowler">Bowler</option>
@@ -45,7 +48,7 @@ export default function Search() {
       <div className="searchResults">
         {
           players && players.map((player,i)=>{
-            return <Card key={i} playerName={player?.playerName?player.playerName:""} playerImg ={player?.playerImg?player.playerImg:"no.png"} btnRequired={false} flagImg = {player?.flagImg?player.flagImg:"no.png"} basePrice = {player?.basePrice?player.basePrice:0} color_primary={player?.color.primary?player.color.primary:'#1A00FF'} scale={{'transform':'scale(0.5)'}} batStat={player?.batStat?player.batStat:{'ppl':0,'mo':0,'dth':0}} bowlStat={player?.bowlStat?player.bowlStat:{'ppl':0,'mo':0,'dth':0}}  color_secondary={player?.color.secondary?player.color.secondary:'#1A00FF'} type={player?.type?player.type:""} overall={player?.overall?player.overall:0}  />
+            return <Card key={i} playerName={player?.playerName?player.playerName:""} playerImg ={player?.playerImg?player.playerImg:"no.png"} btnRequired={false} flagImg = {player?.flagImg?player.flagImg:"no.png"} basePrice = {player?.basePrice?player.basePrice:0} color_primary={player?.color.primary?player.color.primary:'#1A00FF'} scale={{'transform':'scale(1.5)'}} batStat={player?.batStat?player.batStat:{'ppl':0,'mo':0,'dth':0}} bowlStat={player?.bowlStat?player.bowlStat:{'ppl':0,'mo':0,'dth':0}}  color_secondary={player?.color.secondary?player.color.secondary:'#1A00FF'} type={player?.type?player.type:""} overall={player?.overall?player.overall:0}  />
           })
         }
       </div>

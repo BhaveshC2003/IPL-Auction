@@ -21,7 +21,7 @@ export default function Leaderboard() {
   const [Team,setTeam] = useState([]);
   useEffect(() => {
     const slot = localStorage.getItem("slot")
-    axios.get(`http://localhost:9000/team/all?slot=${slot}`)
+    axios.get(`https://oculus-ipl-action.onrender.com/team/all?slot=${slot}`)
     .then(({data})=>{
         data.teams.sort((a,b)=>b.score-a.score)
         setTeam(data.teams)      
@@ -45,7 +45,7 @@ export default function Leaderboard() {
              return <div className='leaderboard-team-container' key={id} style={(id===0||id===1||id===2)?styles[id]:{}}> 
                   <WorkspacePremiumIcon style={{fontSize:40}} />
                 <div  className='leaderboard-team-details'>
-                <div>{team.teamName}</div>
+                <div>{team.name}</div>
                 <div>{team.score}</div></div>
               </div>
             })

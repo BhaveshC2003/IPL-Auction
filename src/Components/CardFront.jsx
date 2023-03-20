@@ -18,7 +18,7 @@ export default function CardFront({playerName, playerImg, btnRequired, flagImg, 
           ? sign * (Math.abs(Number(number)) / 1.0e7) + " Cr"
           : 
           Math.abs(Number(number)) >= 1.0e5
-          ? sign * (Math.abs(Number(number)) / 1.0e5) + " Lakh"
+          ? sign * (Math.abs(Number(number)) / 1.0e5) + " L"
           : 
           Math.abs(Number(number)) >= 1.0e3
           ? sign * (Math.abs(Number(number)) / 1.0e3) + " K"
@@ -28,12 +28,13 @@ export default function CardFront({playerName, playerImg, btnRequired, flagImg, 
     
         <div className='cardFront' style={{...{...gradient,...scale},...(btnRequired?b:{})}} onClick = {flip} >
         <div className='player-name'>{playerName.toUpperCase()}</div>
-        <div className='player-img'><img src={playerImg} onError={imageOnError}  alt="" /><span className='player-front-stats'><div>{type.slice(0,3).toUpperCase()}</div><div>{overall}</div><div className='flag'><img src={flagImg}  alt="" /></div></span></div>
+        <div className='player-img'><div className='frontPlayerImg'><img src={playerImg} onError={imageOnError}  alt="" /></div><div className='player-front-stats'><div>{ type==="batsman"?`BAT`:type==="bowler"?`BOW`:type==="all rounder"?`ALL`:type.includes("women player")?`WPL`:type.includes("associate player")?`ASC`:type==="wicket keeper"?`WK`:""}</div><div>{overall}</div><div className='flag'><img src={flagImg}  alt="" /></div></div></div>
             
                 
                 <div className='card-footer' style={{...(btnRequired?{'borderRadius':'0px'}:{})}}>
                     
-                    <div className='price'>Price: {convert(basePrice)} {flagImg!=="india.png"?<FlightIcon/>:""}</div>
+                    <div className='price'>Price: {convert(basePrice)} {flagImg!=="/media/flag/India.png"
+?<FlightIcon fontSize='inherit'/>:""}</div>
                 </div>      
                 
     </div>

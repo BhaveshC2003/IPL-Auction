@@ -16,12 +16,13 @@ export default function OtherTeams() {
     useEffect(()=>{
       let isCurrent = true
       const slot = localStorage.getItem("slot")
-      axios.get(`http://localhost:9000/team/${teamName}?slot=${slot}`)
+      axios.get(`https://oculus-ipl-action.onrender.com/team/${teamName}?slot=${slot}`)
       .then(({data})=>{
         if(isCurrent){
           setBudget(data.teamDetails.budget)
           setPlayers(data.teamDetails.players)
           setTeamLogo(data.teamDetails.teamImg)
+          setPowercards(data.teamDetails.powercards)
         }
       })
       return ()=>{
@@ -117,7 +118,7 @@ export default function OtherTeams() {
                 <div className="individual-player-type-container">
                 {
                   players.map((player,i)=>{
-                    return player.type.toLowerCase() === "women player"||player.type.toLowerCase() === "associate player"?
+                    return player.type.includes("women player")||player.type.includes("associate player")?
                     <Card key={i} playerName={player?.playerName?player.playerName:""} playerImg ={player?.playerImg?player.playerImg:"no.png"} btnRequired={false} flagImg = {player?.flagImg?player.flagImg:"no.png"} basePrice = {player?.basePrice?player.basePrice:0} color_primary={player?.color.primary?player.color.primary:'#1A00FF'} scale={{'transform':'scale(0.5)'}} batStat={player?.batStat?player.batStat:{'ppl':0,'mo':0,'dth':0}} bowlStat={player?.bowlStat?player.bowlStat:{'ppl':0,'mo':0,'dth':0}}  color_secondary={player?.color.secondary?player.color.secondary:'#1A00FF'} type={player?.type?player.type:""} overall={player?.overall?player.overall:0} />
                         : ""
                   })

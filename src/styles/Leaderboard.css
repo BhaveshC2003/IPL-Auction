@@ -3,7 +3,7 @@
     background-image: url(/public/media/pattern.svg);
     background-repeat: no-repeat;
     background-size: cover;
-
+    min-height: 92vh;
 }
 .Leaderboard-span{
     display: flex;
@@ -46,4 +46,21 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+@media only screen and (max-width:1000px){
+    .Leaderboard-span span{
+        font-size: 8vw;
+        padding: 3vw;
+    }
+    .leaderboard-team-container{
+        width: 70vw;
+        height: 15vw;
+    }
+    .leaderboard-body{
+        gap: 3vw;
+    }
+    .leaderboard-team-details{
+        font-size: 5vw;
+        padding-right: 3vw;
+    }
 }

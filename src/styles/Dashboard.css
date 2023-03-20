@@ -126,3 +126,39 @@
     justify-content: space-around;
     align-items: center;
 }
+
+@media only screen and (max-width:1000px){
+    .dashboard{
+        flex-direction: column;
+        height: auto;
+        min-height: 92vh;
+    }
+    .team-logo{
+        padding-top: 4vw;
+        width:40%;
+    }
+    .team-container{
+        width: 100%;
+        gap: 4vw;
+    }
+    .team-player-container{
+        width: 100%;
+    }
+    .player-type-heading{
+        font-size: 4vw;
+        padding: 2vw 1vw;
+    }
+    .individual-player-type-container{
+        gap: 4vw;
+        padding-left: 1vw;
+    }
+    .team-player-container p{
+        font-size: 4vw;
+    }
+    .budget{
+        font-size: 7vw;
+    }
+    .powercards span{
+        font-size: 5vw;
+    }
+}

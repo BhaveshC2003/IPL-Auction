@@ -13,7 +13,7 @@ export default function Powercard({name,isUsed}) {
         },
         {
             'name':'focusfire',
-            'desc':'Player can place any player that they have bought back for auction.'
+            'desc':'User can place any player that they have bought back for auction.'
         },
         {
             'name':'unoreverse',

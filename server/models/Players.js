@@ -42,6 +42,14 @@ const playerSchema = new mongoose.Schema({
             type:String
         }
     },
+    playerChemistry:{
+        type:Number
+    }
+    ,
+    iccRanking:{
+        type:Number
+    }
+    ,
     color:{
         primary:{
             type:String

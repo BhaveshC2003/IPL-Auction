@@ -16,9 +16,9 @@ export default function Login() {
       password:password,
       slot:slot
     }
-    const {data} = await axios.post("http://localhost:9000/login",userDetails,{headers:{"Content-Type":"application/json"}})
+    const {data} = await axios.post("https://oculus-ipl-action.onrender.com/login",userDetails,{headers:{"Content-Type":"application/json"}})
     if(data.user){
-      alert(data.message)
+      // alert(data.message)
       localStorage.clear()
       localStorage.setItem("name",data.user.name)
       localStorage.setItem("slot",slot)
@@ -47,7 +47,11 @@ export default function Login() {
         <input type="text" value={loginID} onChange={(e)=>{ setloginID(e.target.value) }} className="input" placeholder="Login ID" />
         <input type="password" value={password} onChange={(e)=>{ setPassword(e.target.value) }}  className="input" placeholder="Password" />
         <input type="text" value={slot} onChange={(e)=>setSlot(Number(e.target.value))} className="input" placeholder="Slot Number"/>
-          <button onClick={submit}>Submit</button>
+          <button onKeyDown={(e)=>{
+            if(e.key==="Enter"){
+              submit()
+            }
+          }} onClick={submit}>Submit</button>
         
       </div>
     </div>
